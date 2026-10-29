@@ -1,23 +1,26 @@
-print("\n++++++++++++")
-print("Ejercicio 5 realizado por Angela\n")
-print("Ejercicio 5: ¿Cuánto dura mi playlist?")
+print("\n*** Angela:    T0309306:    ***")
+print("*** Nombre 2:    Matricula:    ***\n")
 
-# Duración de cada canción en segundos
-cancion1 = 210
-cancion2 = 157
-cancion3 = 220
-cancion4 = 188
-cancion5 = 220
+print("*** Ejercicio 5 TIENDA DE ACCESORIOS ***\n")
 
-# Sumamos todo
-total_segundos = cancion1 + cancion2 + cancion3 + cancion4 + cancion5
+producto1 = input("Producto 1: ")
+precio1 = float(input("Precio: "))
+producto2 = input("Producto 2: ")
+precio2 = float(input("Precio: "))
+dinero = float(input("¿Cuánto dinero traes? "))
 
-# // división entera: cuántos minutos completos caben
-minutos = total_segundos // 60
+total = precio1 + precio2
+print("Total de la compra: $", total, sep="\n")
 
-# % residuo: los segundos que sobran
-segundos = total_segundos % 60
-print("\nResultados")
-print(f"Total en segundos: {total_segundos}")
-print(f"Tu playlist dura {minutos} minutos con {segundos} segundos")
-print("\n++++++++++++")
+if total > 300:
+    descuento = total * 15 / 100
+    total_final = total - descuento
+    print("¡Tienes descuento! Pagas $", total_final, sep="")
+else:
+    total_final = total
+    print("Sin descuento, te faltan $", 300 - total, " para llegar a $300", sep="")
+
+if dinero >= total_final:
+    print("Te alcanza, te sobran $", dinero - total_final, sep="")
+else:
+    print("No te alcanza, te faltan $", total_final - dinero, sep="\n")

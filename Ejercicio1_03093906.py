@@ -1,41 +1,19 @@
-print("Actividad 2 Ejercicios martes de Angela")
+print("\n*** Angela:    T03093906:    ***")
+print("*** Nombre 2:    Matricula:    ***\n")
 
-# como dar de alta variables tipo texto, en phyton se llama str
-Mi_Artista_favorito = "Bad Bunny"
-miartista_favorito = "Mora"
-artista = " Rels B"
- 
-# como dar de alta variables tipo numero entero, en phyton se llama int
-mi_edad = 18
-MiEdad = 17
-edad = 19
+print("*** Ejercicio 1: Estado de mi celular ***\n")
 
-# como dar de alta variables decimales, en python se llama float
-horas_llegar_uni = 0.5
-edad = 18.3
-ahorros = 650.45
+bateria = int(input("¿Cuánta batería tienes? "))
+espacio = int(input("¿Cuántos GB libres tienes? "))
+notificaciones = int(input("¿Cuántas notificaciones sin leer tienes? "))
 
-#como saber que tipo de variable es
-print(type(Mi_Artista_favorito))
-print(type(mi_edad))
-print(type(ahorros))
+if bateria <= 20:
+    print("Batería baja, conecta tu cargador")
 
-print("♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡♡")
-print("Mi perfil gamer")
+if espacio < 5:
+    print("Poco espacio, borra fotos o apps que no uses")
 
-#dar de alta las variables de mi gamer tag
-gamertag = "angelardh"      #str (texto)
-edad = 18                   #int o float
-juego_favorito = "Roblox"   #str(texto)
-nivel = 20                  #int o float
-horas_jugadas = 150         #int o float
-tiene_soporte_tecnico = False     #variable booleana
-
-#imprimir tipo de variable
-print("♡♡♡ Aqui imprimo el tipo de variables de mi gamertag ♡♡♡")
-print(type(gamertag))
-print(type(edad))
-print(type(juego_favorito))
-print(type(nivel))
-print(type(horas_jugadas))
-print(type(tiene_soporte_tecnico))
+if notificaciones > 0:
+    print("Tienes", notificaciones, "notificaciones sin leer\n")
+else:
+    print("Estás al día, no tienes notificaciones\n")

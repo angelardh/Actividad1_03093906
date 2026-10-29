@@ -1,29 +1,25 @@
-print("\n************************************************************")
-print("Ejercicio 8: Mi tiempo de pantalla")
-print("\n******************** TIEMPO DE PANTALLA ********************")
+print("\n*** Angela:    t03093906:    ***")
+print("*** Nombre 2:    Matricula:    ***\n")
 
-#Damos de alta la variable app y las horas que paso al día
-app = "Instagram"
-horas_diarias = 2
-print(f"\nPaso {horas_diarias} horas diarias en {app}")
+print("*** Ejercicio 8: CUENTA ENTRE AMIGXS ***")
 
+cuenta = float(input("¿Cuánto fue la cuenta? "))
+personas = int(input("¿Cuántas personas van a pagar? "))
+dinero = float(input("¿Cuánto dinero traes? "))
 
-#Calculamos las horas al año, esta formula dice: horas_anio = 4 * 365
-horas_anio = horas_diarias * 365
-print(f"Al año son {horas_anio} horas")
+propina = cuenta * 10 / 100
+total = cuenta + propina
+por_persona = total / personas
 
+print("Total con propina: $", total, sep="")
+print("A cada persona le toca: $", por_persona, sep="")
 
-#Convertimos las horas a días completos (1 día tiene 24 horas)
-#Esta formula dice: dias_anio = 1460 / 24, que da 60.833333
-dias_anio = horas_anio / 24
+if dinero >= por_persona:
+    print("Te alcanza, te sobran $", dinero - por_persona, sep="")
+else:
+    print("No te alcanza, te faltan $", por_persona - dinero, sep="")
 
-#El :.1f muestra solo 1 decimal, así que se ve 60.8
-print(f"¡Eso equivale a {dias_anio:.1f} días completos sin parar!")
-
-
-#Calculamos cuántos meses son (un mes tiene aprox. 30 días)
-#Esta formula dice: meses = 60.8 / 30
-meses = dias_anio / 30
-
-print(f"\nO sea, casi {meses:.1f} meses de mi año se van en {app}\n")
-print("************************************************************")
+if por_persona > 300:
+    print("Salió caro, la próxima busquen promo\n")
+else:
+    print("¡Buen precio!\n")
