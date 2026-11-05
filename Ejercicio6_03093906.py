@@ -1,18 +1,65 @@
-print("\n*** angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 6: Validar los datos de una alta")
+print("Nombre: Angela Delgado")
+print("Matrícula: t03093906")
+print()
 
-print("*** Ejercicio 6 MI META DE AHORRO ***")
+# 1. Nombre: mientras esté vacío, lo volvemos a pedir
+nombre = input("Nombre del producto: ")
+while nombre == "":
+    print("❌ El nombre no puede estar vacío")
+    nombre = input("Nombre del producto: ")
 
-producto = input("¿Qué quieres comprar? ")
-precio = float(input("¿Cuánto cuestan? "))
-ahorrado = float(input("¿Cuánto tienes ahorrado? "))
-ahorro_semanal = float(input("¿Cuánto ahorras por semana? "))
+# 2. Precio: mientras sea 0 o menos, lo volvemos a pedir
+precio = int(input("Precio: $"))
+while precio <= 0:
+    print("❌ El precio debe ser mayor que 0")
+    precio = int(input("Precio: $"))
 
-if ahorrado >= precio:
-    print("¡Ya puedes comprar tus", producto + "!")
-else:
-    faltante = precio - ahorrado
-    semanas = faltante / ahorro_semanal
-    print("Te faltan $", faltante, " para tus ", producto, sep="")
-    print("Ahorrando $", ahorro_semanal, " por semana, los tendrás en ", semanas, " semanas", sep="")
-    print("\n")
+# 3. Piezas: mientras sean menos de 0, las volvemos a pedir
+piezas = int(input("Piezas en bodega: "))
+while piezas < 0:
+    print("❌ Las piezas no pueden ser negativas")
+    piezas = int(input("Piezas en bodega: "))
+
+# 4. Categoría: al inicio todavía NO es válida
+categoria = ""
+categoria_valida = False
+
+while categoria_valida == False:
+    print("Categorías: 1. Tenis  2. Ropa  3. Accesorios")
+    opcion = input("Elige la categoría: ")
+
+    if opcion == "1":
+        categoria = "Tenis"
+        categoria_valida = True
+    elif opcion == "2":
+        categoria = "Ropa"
+        categoria_valida = True
+    elif opcion == "3":
+        categoria = "Accesorios"
+        categoria_valida = True
+    else:
+        print("❌ Esa categoría no existe")
+
+# 5. Mostramos la ficha
+print()
+print("===== FICHA DEL PRODUCTO =====")
+print("Nombre:", nombre)
+print("Precio: $", precio)
+print("Piezas:", piezas)
+print("Categoría:", categoria)
+
+# 6. Confirmación: al inicio la respuesta todavía NO es válida
+respuesta_valida = False
+
+while respuesta_valida == False:
+    guardar = input("¿Guardar? (s/n): ")
+
+    if guardar == "s":
+        print("✅ Producto guardado")
+        respuesta_valida = True
+    elif guardar == "n":
+        print("🚫 Alta cancelada")
+        respuesta_valida = True
+    else:
+        print("❌ Escribe solo s o n")

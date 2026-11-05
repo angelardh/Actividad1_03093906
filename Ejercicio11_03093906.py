@@ -1,27 +1,45 @@
-print("\n*** angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 11: Buscador de la tienda de sneakers")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 11 ¿Qué me pongo hoy? ***")
+# El inventario de la tienda
+inventario = ["Air Max", "Veja", "Converse", "Samba", "Nike Vomero"]
 
-#int() convierte el texto a número entero para poder comparar
-temperatura = int(input("\n¿Cuántos grados hace hoy? "))
-#Si el usuario escribe 15, ahora temperatura vale 15
+# Contadores
+busquedas = 0
+encontrados = 0
 
-print("\n===== OUTFIT DEL DÍA =====")
+# El buscador se repite hasta que el cliente escriba "salir"
+while True:
+    print()
+    buscado = input("🔍 ¿Qué modelo buscas? (escribe salir para terminar): ")
 
-#PREGUNTA 1: ¿15 es menor que 10? Respuesta: False, pasa a la siguiente
-if temperatura < 10:
-    print("Hace mucho frío: chamarra, bufanda y botas")
+    # ¿Escribió "salir"?
+    if buscado == "salir":
+        break
 
-#PREGUNTA 2: ya sabemos que hace 10 o más
-#¿15 es menor que 20? Respuesta: True, muestra el mensaje y TERMINA
-elif temperatura < 20:
-    print("Está fresco: sudadera y jeans")
+    # Contamos esta búsqueda
+    busquedas = busquedas + 1
 
-#PREGUNTA 3: ya sabemos que hace 20 o más
-elif temperatura < 30:
-    print("Está agradable: playera y tenis")
+    # "Para cada" modelo del inventario...
+    for modelo in inventario:
+        # ¿Este modelo es IGUAL al que busca?
+        if modelo == buscado:
+            print("✅ ¡Sí tenemos", modelo, "!")
+            encontrados = encontrados + 1
+            # Ya lo encontramos: dejamos de buscar
+            break
+    else:
+        # Solo entra aquí si el for terminó SIN break (no lo encontró)
+        print("❌ No tenemos", buscado)
+        print("👟 Te recomendamos estos modelos:")
+        for modelo in inventario:
+            print("  •", modelo)
 
-#else: hace 30 o más
-else:
-    print("Hace mucho calor: short, gorra y mucha agua")
+# Ya salió del buscador: mostramos el resumen
+print()
+print("===== RESUMEN =====")
+print("Búsquedas:", busquedas)
+print("Encontrados:", encontrados)
+print("👋 ¡Gracias por visitar la tienda!")

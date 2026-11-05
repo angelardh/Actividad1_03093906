@@ -1,25 +1,39 @@
-print("\n*** Angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 8: Revisa tu gamertag")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 8: CUENTA ENTRE AMIGXS ***")
+# Pedimos el gamertag
+gamertag = input("Escribe tu gamertag: ")
 
-cuenta = float(input("¿Cuánto fue la cuenta? "))
-personas = int(input("¿Cuántas personas van a pagar? "))
-dinero = float(input("¿Cuánto dinero traes? "))
+# Contadores: empiezan en 0
+vocales = 0
+numeros = 0
+caracteres = 0
 
-propina = cuenta * 10 / 100
-total = cuenta + propina
-por_persona = total / personas
+# "Para cada" letra del gamertag...
+for letra in gamertag:
+    print("🔤", letra)
+    
+    # Contamos este caracter
+    caracteres = caracteres + 1
+    
+    # ¿La letra ESTÁ en el grupo de vocales?
+    if letra in "aeiouAEIOU":
+        vocales = vocales + 1
+        
+    # ¿La letra ESTÁ en el grupo de números?
+    if letra in "0123456789":
+        numeros = numeros + 1
 
-print("Total con propina: $", total, sep="")
-print("A cada persona le toca: $", por_persona, sep="")
+# Ya revisamos todas las letras: mostramos el resumen
+print("===== RESUMEN =====")
+print("Caracteres:", caracteres)
+print("Vocales:", vocales)
+print("Números:", numeros)
 
-if dinero >= por_persona:
-    print("Te alcanza, te sobran $", dinero - por_persona, sep="")
+# ¿No tiene ningún número?
+if numeros == 0:
+    print("💡 Consejo: agrégale un número para que sea único")
 else:
-    print("No te alcanza, te faltan $", por_persona - dinero, sep="")
-
-if por_persona > 300:
-    print("Salió caro, la próxima busquen promo\n")
-else:
-    print("¡Buen precio!\n")
+    print("✅ ¡Buen gamertag!")

@@ -1,32 +1,42 @@
-print("\n*** angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 12: Alta de productos con folio")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 12 Playlist según tu mood ***")
+# ¿Cuántos productos vamos a dar de alta?
+cuantos = int(input("¿Cuántos productos vas a dar de alta? "))
 
-#Mostramos el menú de opciones
-print("\n===== ¿CÓMO TE SIENTES HOY? =====")
-print("1 = Feliz")
-print("2 = Triste")
-print("3 = Con energía")
-print("4 = Estudiando")
+# Aquí sumaremos el valor de todo el inventario
+valor_total = 0
 
-#int() convierte el texto a número para compararlo con 1, 2, 3 y 4
-mood = int(input("\nEscribe el número de tu mood: "))
-#Si el usuario escribe 4, ahora mood vale 4
+# "Para cada" número del 1 al total de productos...
+for numero in range(1, cuantos + 1):
+    # Creamos el folio: str() convierte el número en texto para poder juntarlo
+    folio = "SNK" + str(numero)
 
-#Python revisa en orden y se detiene en la primera que sea True
-#¿4 es igual a 1? False, pasa a la siguiente
-if mood == 1:
-    print("Te recomiendo una playlist de pop")
-#¿4 es igual a 2? False, pasa a la siguiente
-elif mood == 2:
-    print("Te recomiendo una playlist de baladas")
-#¿4 es igual a 3? False, pasa a la siguiente
-elif mood == 3:
-    print("Te recomiendo una playlist de reggaetón o K-pop")
-#¿4 es igual a 4? True, muestra el mensaje y TERMINA
-elif mood == 4:
-    print("Te recomiendo una playlist de lo-fi para concentrarte")
-#else: escribió un número que no está en el menú
-else:
-    print("Ese mood no está en la lista")
+    print()
+    print("📝 Producto con folio", folio)
+    nombre = input("Nombre: ")
+
+    # Pedimos el precio y lo validamos: mientras sea 0 o menos, se repite
+    precio = int(input("Precio: $"))
+    while precio <= 0:
+        print("❌ El precio debe ser mayor que 0")
+        precio = int(input("Precio: $"))
+
+    piezas = int(input("Piezas en bodega: "))
+
+    # Calculamos cuánto vale este producto en bodega
+    valor = precio * piezas
+    valor_total = valor_total + valor
+
+    # Mostramos la ficha
+    print("✅ Alta exitosa")
+    print("  Folio:", folio, "· Nombre:", nombre)
+    print("  Precio: $", precio, "· Piezas:", piezas, "· Valor: $", valor)
+
+# Ya terminamos todas las altas
+print()
+print("===== RESUMEN DEL INVENTARIO =====")
+print("Productos dados de alta:", cuantos)
+print("💰 Valor total del inventario: $", valor_total)

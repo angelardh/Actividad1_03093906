@@ -1,35 +1,45 @@
-print("\n*** Nombre 1:    Matricula:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 15: Bajas en el inventario")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
 
-print("*** Ejercicio 15 Rango en tu videojuego ***")
+# El inventario inicial
+inventario = ["Veja", "Golden Goose", "Converse", "Samba", "New Balance 550"]
 
-#int() convierte el texto a número entero para poder comparar y hacer cuentas
-puntos = int(input("\n¿Cuántos puntos tienes? "))
-#Si el usuario escribe 2500, ahora puntos vale 2500
+while True:
+    # Mostramos el inventario numerado
+    print()
+    print("===== INVENTARIO =====")
+    for i in range(len(inventario)):
+        print(i + 1, ".", inventario[i])
 
-print("\n===== TU RANGO =====")
+    numero = int(input("Número del producto a eliminar (0 para terminar): "))
 
-#Empezamos por el rango MÁS ALTO
-#¿2500 es mayor o igual que 3000? False, pasa a la siguiente
-if puntos >= 3000:
-    print("Rango: DIAMANTE")
-    print("¡Ya estás en el rango máximo!")
+    # ¿Escribió 0?
+    if numero == 0:
+        break
+    # ¿El número es menor que 1?
+    elif numero < 0:
+        print("❌ Ese número no existe")
+    # ¿El número es mayor que la cantidad de productos?
+    elif numero > len(inventario):
+        print("❌ Ese número no existe")
+    else:
+        # El número sí existe. Recuerda: casillero = número - 1
+        elegido = inventario[numero - 1]
+        confirmar = input("¿Seguro que quieres eliminar " + elegido + "? (s/n): ")
 
-#¿2500 es mayor o igual que 2000? True, entra aquí y TERMINA
-elif puntos >= 2000:
-    #Esta fórmula dice: faltan = 3000 - 2500
-    faltan = 3000 - puntos
-    #Ahora faltan vale 500
-    print("Rango: ORO")
-    print(f"Te faltan {faltan} puntos para Diamante")
+        if confirmar == "s":
+            # Borramos lo que hay en ese casillero
+            del inventario[numero - 1]
+            print("🗑️", elegido, "fue eliminado")
+        else:
+            print("👍 Baja cancelada")
 
-elif puntos >= 1000:
-    faltan = 2000 - puntos
-    print("Rango: PLATA")
-    print(f"Te faltan {faltan} puntos para Oro")
+    # ¿El inventario quedó vacío?
+    if len(inventario) == 0:
+        print("📭 El inventario quedó vacío")
+        break
 
-#else: tiene menos de 1000
-else:
-    faltan = 1000 - puntos
-    print("Rango: BRONCE")
-    print(f"Te faltan {faltan} puntos para Plata")
+# Ya salimos del while
+print()
+print("Quedaron", len(inventario), "productos en el inventario")

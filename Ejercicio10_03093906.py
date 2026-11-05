@@ -1,30 +1,46 @@
-print("\n*** angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 10: Tu playlist en el camión")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 10 Nivel de influencer ***")
+# Nuestra playlist
+playlist = ["DesOrden", "EXCXSXS", "Conexión Psiquica",
+            "Casualidad", "2:12 AM", "Corazón despeinado"]
 
-#input() guarda texto; el usuario es texto, así que no lo convertimos
-usuario = input("\nTu usuario: @")
-#int() convierte a número entero para poder comparar
-seguidores = int(input("¿Cuántos seguidores tienes? "))
-#Si el usuario escribe 25000, ahora seguidores vale 25000
+# Mostramos la playlist numerada
+print("===== 🎧 MI PLAYLIST =====")
+numero = 1
+for cancion in playlist:
+    print(numero, ".", cancion)
+    numero = numero + 1
 
-print(f"\n===== NIVEL DE @{usuario} =====")
+# Preguntamos qué saltar y dónde bajarse (escríbelas igual que en la lista)
+saltar = input("¿Qué canción quieres saltar? ")
+parada = input("¿En qué canción llegas a tu parada? ")
 
-#PREGUNTA 1: ¿25000 es menor que 1000? Respuesta: False, pasa a la siguiente
-if seguidores < 1000:
-    print("Nivel: Principiante")
+# Contador de canciones escuchadas
+escuchadas = 0
 
-#PREGUNTA 2: si llegamos aquí, YA SABEMOS que tiene 1000 o más
-#¿25000 es menor que 10000? Respuesta: False, pasa a la siguiente
-elif seguidores < 10000:
-    print("Nivel: Microinfluencer")
-
-#PREGUNTA 3: si llegamos aquí, YA SABEMOS que tiene 10000 o más
-#¿25000 es menor que 100000? Respuesta: True, muestra el mensaje y TERMINA
-elif seguidores < 100000:
-    print("Nivel: Influencer")
-
-#else: si ninguna fue True, tiene 100000 o más
+# "Para cada" canción de la playlist...
+for cancion in playlist:
+    
+    # ¿Es la canción que queremos saltar?
+    if cancion == saltar:
+        print("⏭️ Saltando", cancion)
+        # continue: pasa a la siguiente canción sin escuchar esta
+        continue
+        
+    # Si no la saltamos, la escuchamos
+    print("🎵 Escuchando", cancion)
+    escuchadas = escuchadas + 1
+    
+    # ¿Es la canción en la que llegamos a la parada?
+    if cancion == parada:
+        print("🚏 ¡Llegaste a tu parada!")
+        # break: dejamos de escuchar
+        break
 else:
-    print("Nivel: Celebridad digital")
+    # Solo entra aquí si el for terminó SIN break
+    print("🎧 Escuchaste toda la playlist")
+
+print("Canciones escuchadas:", escuchadas)

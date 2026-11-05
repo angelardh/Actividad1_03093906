@@ -1,35 +1,46 @@
-print("\n*** Angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 9: Torneo de videojuegos")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 9 Tamaño de tu bebida ***")
+# Datos del torneo
+juego = input("¿De qué juego es el torneo? ")
+cantidad = int(input("¿Cuántos jugadores hay? "))
 
-#Mostramos el menú para que el usuario sepa qué puede elegir
-print("\n===== MENÚ DE TAMAÑOS =====")
-print("1 = Chico   ($55)")
-print("2 = Mediano ($70)")
-print("3 = Grande  ($85)")
+# Contadores y acumuladores
+total_puntos = 0
+finalistas = 0
 
-#input() pregunta y guarda la respuesta como TEXTO
-#int() la convierte a número entero para poder compararla con 1, 2 y 3
-opcion = int(input("\n¿Qué tamaño quieres? Escribe 1, 2 o 3: "))
-#Si el usuario escribe 2, ahora opcion vale 2
+# Para guardar al mejor: empezamos con -1 para que cualquier puntaje lo supere
+mejor_nombre = ""
+mejor_puntos = -1
 
-#PREGUNTA 1: ¿2 es igual a 1? Respuesta: False, entonces pasa a la siguiente pregunta
-if opcion == 1:
-    print("Elegiste tamaño CHICO, son $55")
+# "Para cada" jugador del 1 al total...
+for jugador in range(1, cantidad + 1):
+    print()
+    print("🎮 Jugador", jugador)
+    nombre = input("Gamertag: ")
+    puntos = int(input("Puntos: "))
 
-#PREGUNTA 2: ¿2 es igual a 2? Respuesta: True, entonces muestra este mensaje
-#y Python YA NO revisa las preguntas de abajo
-elif opcion == 2:
-    print("Elegiste tamaño MEDIANO, son $70")
+    # Sumamos sus puntos al total
+    total_puntos = total_puntos + puntos
 
-#PREGUNTA 3: solo se revisa si las dos anteriores fueron False
-elif opcion == 3:
-    print("Elegiste tamaño GRANDE, son $85")
+    # ¿Tiene 100 puntos o más?
+    if puntos >= 100:
+        print("🌟", nombre, "pasa a la final")
+        finalistas = finalistas + 1
+    else:
+        print("📈", nombre, "sigue practicando")
 
-#else: entra aquí solo si NINGUNA pregunta fue True (escribió 4, 7, 0, etc.)
-else:
-    print("Opción no válida, elige 1, 2 o 3")
+    # ¿Sus puntos son MAYORES que los del mejor hasta ahora?
+    if puntos > mejor_puntos:
+        # Ahora él es el mejor
+        mejor_puntos = puntos
+        mejor_nombre = nombre
 
-#Esta línea no tiene sangría, no pertenece al if, por eso se muestra siempre
-print("\n¡Gracias por tu compra!")
+# Ya registramos a todos: mostramos los resultados
+print()
+print("===== 🏆 RESULTADOS DEL TORNEO DE", juego, "=====")
+print("Puntos de todos los jugadores:", total_puntos)
+print("Finalistas:", finalistas)
+print("🏆 Ganador:", mejor_nombre, "con", mejor_puntos, "puntos")

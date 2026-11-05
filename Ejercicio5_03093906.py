@@ -1,26 +1,52 @@
-print("\n*** Angela:    T0309306:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 5: El menú de tu proyecto CRUD")
+print("Nombre: Angela Delgado")
+print("Matrícula: t03093906")
+print()
 
-print("*** Ejercicio 5 TIENDA DE ACCESORIOS ***\n")
+# Pedimos el nombre del sistema
+nombre_sistema = input("¿Cómo se llama tu sistema? ")
 
-producto1 = input("Producto 1: ")
-precio1 = float(input("Precio: "))
-producto2 = input("Producto 2: ")
-precio2 = float(input("Precio: "))
-dinero = float(input("¿Cuánto dinero traes? "))
+# Contador de operaciones: empieza en 0
+operaciones = 0
 
-total = precio1 + precio2
-print("Total de la compra: $", total, sep="\n")
+# El menú se repite siempre; la única salida es el break
+while True:
+    print()
+    print("=====", nombre_sistema, "=====")
+    print("1. Altas")
+    print("2. Bajas")
+    print("3. Cambios")
+    print("4. Consultas")
+    print("5. Imprimir")
+    print("6. Salir")
+    opcion = input("Elige una opción: ")
 
-if total > 300:
-    descuento = total * 15 / 100
-    total_final = total - descuento
-    print("¡Tienes descuento! Pagas $", total_final, sep="")
-else:
-    total_final = total
-    print("Sin descuento, te faltan $", 300 - total, " para llegar a $300", sep="")
+    if opcion == "1":
+        print("➕ Aquí irán las ALTAS de reseñas de películas")
+        operaciones = operaciones + 1
+    elif opcion == "2":
+        print("🗑️ Aquí irán las BAJAS de borrar una reseña")
+        operaciones = operaciones + 1
+    elif opcion == "3":
+        print("✏️ Aquí irán los CAMBIOS de estrellas o texto")
+        operaciones = operaciones + 1
+    elif opcion == "4":
+        print("🔍 Aquí irán las CONSULTAS ver las mejor calificadas")
+        operaciones = operaciones + 1
+    elif opcion == "5":
+        print("🖨️ Aquí irá IMPRIMIR de tu proyecto")
+        operaciones = operaciones + 1
+    elif opcion == "6":
+        # Antes de salir, confirmamos
+        seguro = input("¿Seguro que quieres salir? (s/n): ")
 
-if dinero >= total_final:
-    print("Te alcanza, te sobran $", dinero - total_final, sep="")
-else:
-    print("No te alcanza, te faltan $", total_final - dinero, sep="\n")
+        # ¿La respuesta es IGUAL a "s"?
+        if seguro == "s":
+            print("👏 Hiciste", operaciones, "operaciones. ¡Hasta luego!")
+            # break nos saca del while
+            break
+        else:
+            print("👍 Regresando al menú...")
+    else:
+        # Opción inválida: no se cuenta como operación
+        print("❌ Opción no válida, elige del 1 al 6")

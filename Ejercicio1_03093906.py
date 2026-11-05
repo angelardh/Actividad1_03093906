@@ -1,19 +1,32 @@
-print("\n*** Angela:    T03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 1: Inicia sesión en Roblox")
+print("Nombre: Angela Delgado")
+print("Matrícula: t03093906")
+print()
 
-print("*** Ejercicio 1: Estado de mi celular ***\n")
+# Guardamos el usuario y la contraseña correctos
+usuario_correcto = "delg_angela"
+contrasena_correcta = "roblox123"
 
-bateria = int(input("¿Cuánta batería tienes? "))
-espacio = int(input("¿Cuántos GB libres tienes? "))
-notificaciones = int(input("¿Cuántas notificaciones sin leer tienes? "))
+# Al inicio todavía NO ha iniciado sesión
+sesion_iniciada = False
 
-if bateria <= 20:
-    print("Batería baja, conecta tu cargador")
+# Mientras NO haya iniciado sesión, se repite
+while sesion_iniciada == False:
+    # Pedimos el usuario y la contraseña
+    usuario = input("Usuario: ")
+    contrasena = input("Contraseña: ")
 
-if espacio < 5:
-    print("Poco espacio, borra fotos o apps que no uses")
+    # ¿El usuario es IGUAL al correcto?
+    if usuario == usuario_correcto:
+        # Sí existe. Ahora: ¿la contraseña es IGUAL a la correcta?
+        if contrasena == contrasena_correcta:
+            print("✅ ¡Bienvenido,", usuario, "!")
+            # Ya entró: esto hace que el while se detenga
+            sesion_iniciada = True
+        else:
+            print("❌ La contraseña es incorrecta")
+    else:
+        print("❌ Ese usuario no existe")
 
-if notificaciones > 0:
-    print("Tienes", notificaciones, "notificaciones sin leer\n")
-else:
-    print("Estás al día, no tienes notificaciones\n")
+# Esto se ejecuta cuando ya salió del while
+print("🎮 Cargando tus juegos...")

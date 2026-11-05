@@ -1,22 +1,21 @@
-print("\n*** Angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 7: Boletos para el concierto")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 7: TIEMPO DE PANTALLA ***")
+# Pedimos el artista y cuántos boletos quiere
+artista = input("¿De quién es el concierto? ")
+cantidad = int(input("¿Cuántos boletos quieres? "))
 
-nombre = input("¿Cómo te llamas? ")
-limite = float(input("¿Cuál es tu límite de horas? "))
-horas_redes = float(input("¿Cuántas horas en redes sociales? "))
-horas_juegos = float(input("¿Cuántas horas en videojuegos? "))
+# range(1, cantidad + 1): de 1 hasta cantidad
+# (le sumamos 1 porque range se detiene ANTES del último número)
+for boleto in range(1, cantidad + 1):
+    # Pedimos el nombre de quien va a usar este boleto
+    asistente = input("Nombre del asistente " + str(boleto) + ": ")
 
-total = horas_redes + horas_juegos
-print(nombre + ", hoy usaste el celular", total, "horas")
+    # Mostramos el boleto
+    print("🎟️ Boleto", boleto, "de", cantidad)
+    print("🎤", artista, "· Asistente:", asistente)
 
-if total > limite:
-    print("Te pasaste", total - limite, "horas de tu límite, ¡es hora de desconectarte!")
-else:
-    print("¡Felicidades! Cumpliste tu meta de tiempo de pantalla")
-
-if horas_redes > horas_juegos:
-    print("Lo que más usaste fueron las redes sociales\n")
-else:
-    print("Lo que más usaste fueron los videojuegos\n")
+# Esto se ejecuta cuando el for ya dio todas sus vueltas
+print("✅ Se generaron", cantidad, "boletos. ¡Disfruten el concierto!")

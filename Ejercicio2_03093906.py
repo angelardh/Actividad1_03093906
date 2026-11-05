@@ -1,21 +1,35 @@
-print("\n*** Angela:    Matricula:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 2: Menú de la Cafetería Cute")
+print("Nombre: Angela Delgado")
+print("Matrícula: t03093906")
 
-print("*** Ejercicio 2 CREA TU CUENTA ***\n")
+# while True: el menú se repite siempre; la única salida es el break
+while True:
+    # Mostramos el menú
+    print()
+    print("===== ☕ CAFETERÍA CUTE =====")
+    print("1. Ver bebidas")
+    print("2. Ver postres")
+    print("3. Ver horario")
+    print("4. Salir")
 
-nombre = input("¿Cómo te llamas? ")
-anio = int(input("¿En qué año naciste? "))
-red_social = input("¿Cuál es tu red social favorita? ")
+    # Pedimos la opción
+    opcion = input("Elige una opción: ")
 
-edad = 2026 - anio
-print(nombre + ", tienes", edad, "años")
-
-if edad >= 13:
-    print("Tu cuenta en", red_social, "fue creada")
-else:
-    print("Todavía no puedes crear tu cuenta, te faltan", 13 - edad, "años")
-
-if edad >= 18:
-    print("Compras dentro de la app activadas\n")
-else:
-    print("Compras dentro de la app desactivadas\n")
+    # Revisamos qué opción eligió
+    if opcion == "1":
+        print("🥤 Frappé de cajeta ..... $65")
+        print("🍵 Matcha latte ......... $70")
+        print("🍓 Smoothie de fresa .... $55")
+    elif opcion == "2":
+        print("🍪 Galleta red velvet .... $35")
+        print("🧁 Cupcake de Oreo ....... $40")
+        print("🍩 Dona glaseada ........ $30")
+    elif opcion == "3":
+        print("⏰ Lunes a viernes: 7:00 a 20:00")
+        print("⏰ Sábados: 9:00 a 14:00")
+    elif opcion == "4":
+        print("👋 ¡Gracias por visitarnos!")
+        # El cliente eligió Salir: break nos saca del while
+        break
+    else:
+        print("❌ Opción no válida, elige del 1 al 4")

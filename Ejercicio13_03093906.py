@@ -1,36 +1,33 @@
-print("\n*** angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 13: Mis juegos favoritos")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 13 Mensaje según tu calificación ***")
+# Creamos la lista con 5 juegos
+juegos = ["Subway Surfers", "Roblox", "Fortnite", "FIFA", "Among Us"]
 
-#int() convierte el texto a número entero para poder comparar
-calificacion = int(input("\n¿Qué calificación sacaste en el examen de Cisco? "))
-#Si el usuario escribe 85, ahora calificacion vale 85
+# Casillero 0: el primero
+print("🥇 Mi juego número 1:", juegos[0])
 
-print("\n===== RESULTADO =====")
+# Casillero -1: el último
+print("🔚 El último de mi lista:", juegos[-1])
 
-#PRIMERO revisamos que la calificación sea válida
-#¿85 es mayor que 100? False, pasa a la siguiente
-if calificacion > 100:
-    print("Calificación no válida, debe ser de 0 a 100")
+# Casillero 2: el tercero (porque empezamos en 0)
+print("3️⃣ El tercero:", juegos[2])
 
-#¿85 es menor que 0? False, pasa a la siguiente
-elif calificacion < 0:
-    print("Calificación no válida, debe ser de 0 a 100")
+# len() cuenta cuántos hay
+print("📦 Tengo", len(juegos), "juegos favoritos")
 
-#Si llegamos aquí, YA SABEMOS que la calificación es válida
-#¿85 es mayor o igual que 90? False, pasa a la siguiente
-elif calificacion >= 90:
-    print("¡Excelente! Eres crack")
+# Mostramos la lista numerada
+print()
+print("===== MIS FAVORITOS =====")
+# range(len(juegos)) nos da los casilleros: 0, 1, 2, 3, 4
+for i in range(len(juegos)):
+    # Mostramos i + 1 para que la persona vea del 1 al 5
+    print(i + 1, ".", juegos[i])
 
-#¿85 es mayor o igual que 80? True, muestra el mensaje y TERMINA
-elif calificacion >= 80:
-    print("Muy bien")
+# Pedimos un número del 1 al 5
+numero = int(input("Escribe un número del 1 al 5: "))
 
-#Ya sabemos que es menor que 80
-elif calificacion >= 70:
-    print("Aprobaste, pero puedes mejorar")
-
-#else: es menor que 70
-else:
-    print("Reprobaste, ¡a estudiar!")
+# La persona cuenta desde 1, pero Python desde 0: por eso le restamos 1
+print("🎮 Elegiste:", juegos[numero - 1])

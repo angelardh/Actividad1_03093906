@@ -1,37 +1,38 @@
-print("\n*** angela:    t03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 14: Altas en el inventario")
+print("Nombre: Angela Delgado")
+print("Matrícula: T03093906")
+print()
 
-print("*** Ejercicio 14 Costo de envío ***")
+# Empezamos con el inventario vacío
+inventario = []
 
-#float() convierte a número con decimales, porque el dinero y los km pueden tener decimales
-pedido = float(input("\n¿Cuánto es tu pedido? $"))
-#Si el usuario escribe 250, ahora pedido vale 250.0
-distancia = float(input("¿A cuántos km vives de la tienda? "))
-#Si el usuario escribe 8, ahora distancia vale 8.0
+# Al inicio todavía NO terminamos
+termine = False
 
-#En cada opción GUARDAMOS el costo de envío en la misma variable
-#¿8.0 es menor o igual que 3? False, pasa a la siguiente
-if distancia <= 3:
-    costo_envio = 0
-    print("\n¡Envío gratis!")
+while termine == False:
+    nuevo = input("Producto a agregar (escribe fin para terminar): ")
 
-#¿8.0 es menor o igual que 10? True, guarda 39 y TERMINA
-elif distancia <= 10:
-    costo_envio = 39
-    print("\nEl envío cuesta $39")
+    # ¿Escribió "fin"?
+    if nuevo == "fin":
+        termine = True
+    # ¿Lo dejó vacío?
+    elif nuevo == "":
+        print("❌ El producto no puede estar vacío")
+    # ¿Ya ESTÁ en el inventario?
+    elif nuevo in inventario:
+        print("⚠️", nuevo, "ya está en el inventario")
+    else:
+        # Todo bien: lo agregamos al final de la lista
+        inventario.append(nuevo)
+        print("✅ Agregado. Llevas", len(inventario), "productos")
 
-elif distancia <= 20:
-    costo_envio = 69
-    print("\nEl envío cuesta $69")
+# Mostramos el inventario
+print()
+print("===== INVENTARIO =====")
 
-#else: vive a más de 20 km
+# ¿La lista quedó vacía?
+if len(inventario) == 0:
+    print("📭 No agregaste productos")
 else:
-    costo_envio = 0
-    print("\nNo hacemos envíos a más de 20 km, recoge tu pedido en tienda")
-
-#Esta parte no tiene sangría, se hace SIEMPRE
-#Ahora costo_envio vale 39, esta fórmula dice: total = 250.0 + 39
-total = pedido + costo_envio
-print(f"Pedido: ${pedido:.2f}")
-print(f"Envío: ${costo_envio:.2f}")
-print(f"TOTAL A PAGAR: ${total:.2f}")
+    for i in range(len(inventario)):
+        print(i + 1, ".", inventario[i])

@@ -1,18 +1,59 @@
-print("\n*** Angela:    T03093906:    ***")
-print("*** Nombre 2:    Matricula:    ***\n")
+print("Ejercicio 4: La caja registradora de la cafetería")
+print("Nombre: Angela Delgado")
+print("Matrícula: t03093906")
+print()
 
-print("*** Ejercicio 3 MIS ESTADÍSTICAS ***\n")
+# Empezamos con el total y los productos en 0
+total = 0
+productos = 0
 
-usuario = input("¿Cuál es tu usuario? ")
-seguidores = int(input("¿Cuántos seguidores tienes? "))
-likes = int(input("¿Cuántos likes tuvo tu último video? "))
+# Al inicio todavía NO terminamos de registrar
+termine = False
 
-if seguidores >= 1000:
-    print("Ya puedes hacer lives")
-else:
-    print("Te faltan", 1000 - seguidores, "seguidores para hacer lives")
+# Mientras NO hayamos terminado, se repite
+while termine == False:
+    print("===== Nuevo producto =====")
+    nombre = input("Producto (escribe fin para cobrar): ")
 
-if likes > seguidores:
-    print("¡Tu último video se hizo viral!\n")
-else:
-    print("Sigue publicando, vas bien\n")
+    # ¿Escribió "fin"?
+    if nombre == "fin":
+        termine = True
+    else:
+        # Pedimos el precio y la cantidad (los convertimos a número)
+        precio = int(input("Precio de " + nombre + ": $"))
+        cantidad = int(input("¿Cuántos quiere? "))
+
+        # Calculamos el subtotal de este producto
+        subtotal = precio * cantidad
+
+        # Lo sumamos al total y contamos los productos
+        total = total + subtotal
+        productos = productos + cantidad
+
+        print("🧾", cantidad, nombre, "= $", subtotal)
+        print("💰 Llevas $", total)
+
+# Ya fuera del while: mostramos el ticket
+print()
+print("========== TICKET ==========")
+print("Productos:", productos)
+print("Total: $", total)
+
+# ¿El total es de 200 o más?
+if total >= 200:
+    total = total - 20
+    print("🎉 Descuento de $20 aplicado")
+    print("Total con descuento: $", total)
+
+# Pedimos con cuánto paga
+pago = int(input("¿Con cuánto pagas? $"))
+
+# Mientras el pago sea MENOR que el total, no alcanza
+while pago < total:
+    print("❌ No alcanza. Faltan $", total - pago)
+    pago = int(input("¿Con cuánto pagas? $"))
+
+# Ya alcanzó: calculamos el cambio
+cambio = pago - total
+print("✅ Pago recibido. Tu cambio es: $", cambio)
+print("☕ ¡Gracias por tu compra!")
