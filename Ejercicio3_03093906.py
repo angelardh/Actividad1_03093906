@@ -1,55 +1,42 @@
-print("Ejercicio 3: Desbloquea tu celular")
+print("Ejercicio 3: ¿Se puede exportar el producto?")
 print("Nombre: Angela Delgado")
-print("Matrícula: t03093906")
+print("Matrícula: 03093906")
 print()
 
-# 1. Guardamos el PIN correcto
-pin_correcto = "0408"
+# Pedimos los datos del producto y del destino
+producto = input("¿Qué producto vas a exportar?: ")
+respuesta1 = input("¿Está en la lista de restringidos? (si/no): ")
+respuesta2 = input("¿La empresa tiene permiso especial? (si/no): ")
+respuesta3 = input("¿El permiso está vigente? (si/no): ")
+respuesta4 = input("¿El país destino tiene restricciones comerciales? (si/no): ")
+kilos = float(input("¿Cuántos kilos vas a enviar?: "))
 
-# 2. Empezamos con 0 intentos
-intentos = 0
+# Convertimos las respuestas en True o False
+restringido = respuesta1 == "si"
+tiene_permiso = respuesta2 == "si"
+permiso_vigente = respuesta3 == "si"
+destino_restringido = respuesta4 == "si"
 
-# 3. Mientras lleve menos de 3 intentos, se repite
-while intentos < 3:
-    pin = input("🔒 Escribe tu PIN de 4 números: ")
+# Un permiso solo sirve si existe Y está vigente
+permiso_valido = tiene_permiso and permiso_vigente
 
-    # ¿El PIN es IGUAL al correcto?
-    if pin == pin_correcto:
-        print("🔓 Celular desbloqueado")
-        # Ya entró: break lo saca del while
-        break
-    else:
-        # Se equivocó: sumamos 1 intento
-        intentos = intentos + 1
-        # Calculamos cuántos intentos le quedan
-        restantes = 3 - intentos
-        print("❌ PIN incorrecto. Te quedan", restantes, "intentos")
+print()
+print("===== REVISIÓN DE CUMPLIMIENTO =====")
 
-# 4. Ya fuera del while: ¿se acabaron los intentos?
-if intentos == 3:
-    print("🔒 Celular bloqueado por 30 segundos")
-    print("💡 Pista: son los números de la columna del centro")
+# Se exporta si: (NO está restringido O tiene permiso válido) Y el destino NO tiene restricciones
+if (not restringido or permiso_valido) and not destino_restringido:
+    print("✅", producto, "se puede exportar.")
+
+    # and: restringido Y más de 1000 kilos: necesita inspección
+    if restringido and kilos > 1000:
+        print("🔍 Por ser restringido y pesar más de 1000 kg, necesita inspección previa.")
 else:
-    # Sí lo desbloqueó
-    print("📱 Tienes 3 notificaciones nuevas")
+    print("🛑", producto, "NO se puede exportar.")
 
-    # 5. Preguntamos si quiere cambiar el PIN
-    cambiar = input("¿Quieres cambiar tu PIN? (s/n): ")
-
-    if cambiar == "s":
-        # Al inicio los dos PIN todavía NO coinciden
-        coinciden = False
-
-        # Mientras NO coincidan, se repite
-        while coinciden == False:
-            nuevo = input("Escribe tu nuevo PIN: ")
-            confirmacion = input("Vuelve a escribirlo para confirmar: ")
-
-            # ¿Los dos son IGUALES?
-            if nuevo == confirmacion:
-                print("✅ Tu PIN se cambió correctamente")
-                coinciden = True
-            else:
-                print("❌ No coinciden, intenta otra vez")
-    else:
-        print("👍 Tu PIN se queda igual")
+    # Explicamos el motivo
+    if destino_restringido:
+        print("Motivo: el país destino tiene restricciones comerciales.")
+    elif not tiene_permiso:
+        print("Motivo: el producto está restringido y no hay permiso especial.")
+    elif not permiso_vigente:
+        print("Motivo: el permiso especial está vencido. Hay que renovarlo.")

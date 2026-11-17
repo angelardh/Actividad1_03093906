@@ -1,46 +1,51 @@
-print("Ejercicio 9: Torneo de videojuegos")
-print("Nombre: Angela Delgado")
+print("Ejercicio 9: Requisitos de aduana en un solo número")
+print("Nombre: angela Delgado")
 print("Matrícula: T03093906")
 print()
 
-# Datos del torneo
-juego = input("¿De qué juego es el torneo? ")
-cantidad = int(input("¿Cuántos jugadores hay? "))
+# Cada requisito es un bit. Los creamos con << (correr un 1 a la izquierda)
+FACTURA = 1 << 0  # 0001 = 1
+PEDIMENTO = 1 << 1  # 0010 = 2
+IMPUESTOS = 1 << 2  # 0100 = 4
+MERCANCIA = 1 << 3  # 1000 = 8
 
-# Contadores y acumuladores
-total_puntos = 0
-finalistas = 0
+# | : juntamos los 4 bits para saber cómo se ve un embarque completo
+TODOS = FACTURA | PEDIMENTO | IMPUESTOS | MERCANCIA  # 1111 = 15
 
-# Para guardar al mejor: empezamos con -1 para que cualquier puntaje lo supere
-mejor_nombre = ""
-mejor_puntos = -1
+# Pedimos los requisitos
+factura = input("¿Tienes la factura comercial? (si/no): ")
+pedimento = input("¿Tienes el pedimento de importación? (si/no): ")
+impuestos = input("¿Ya pagaste los impuestos? (si/no): ")
+coincide = input("¿La mercancía coincide con lo declarado? (si/no): ")
 
-# "Para cada" jugador del 1 al total...
-for jugador in range(1, cantidad + 1):
-    print()
-    print("🎮 Jugador", jugador)
-    nombre = input("Gamertag: ")
-    puntos = int(input("Puntos: "))
+# Empezamos con todos los bits apagados y prendemos con | cada requisito cumplido
+codigo = 0
+if factura == "si":
+    codigo = codigo | FACTURA
+if pedimento == "si":
+    codigo = codigo | PEDIMENTO
+if impuestos == "si":
+    codigo = codigo | IMPUESTOS
+if coincide == "si":
+    codigo = codigo | MERCANCIA
 
-    # Sumamos sus puntos al total
-    total_puntos = total_puntos + puntos
-
-    # ¿Tiene 100 puntos o más?
-    if puntos >= 100:
-        print("🌟", nombre, "pasa a la final")
-        finalistas = finalistas + 1
-    else:
-        print("📈", nombre, "sigue practicando")
-
-    # ¿Sus puntos son MAYORES que los del mejor hasta ahora?
-    if puntos > mejor_puntos:
-        # Ahora él es el mejor
-        mejor_puntos = puntos
-        mejor_nombre = nombre
-
-# Ya registramos a todos: mostramos los resultados
 print()
-print("===== 🏆 RESULTADOS DEL TORNEO DE", juego, "=====")
-print("Puntos de todos los jugadores:", total_puntos)
-print("Finalistas:", finalistas)
-print("🏆 Ganador:", mejor_nombre, "con", mejor_puntos, "puntos")
+print("===== RESULTADO DE LA ADUANA =====")
+print("Código del embarque:", format(codigo, "04b"), "=", codigo)
+
+# & : si al comparar con TODOS el resultado es TODOS, no falta ningún bit
+if (codigo & TODOS) == TODOS:
+    print("✅ Embarque liberado. Puede salir de la aduana.")
+else:
+    # ~ y & : invertimos el código para ver los bits que están en 0 (lo que falta)
+    faltan = ~codigo & TODOS
+    print("🛑 Embarque detenido. Código de lo que falta:", format(faltan, "04b"))
+
+    if (faltan & FACTURA) != 0:
+        print("  - Factura comercial")
+    if (faltan & PEDIMENTO) != 0:
+        print("  - Pedimento de importación")
+    if (faltan & IMPUESTOS) != 0:
+        print("  - Pago de impuestos")
+    if (faltan & MERCANCIA) != 0:
+        print("  - La mercancía no coincide con lo declarado")

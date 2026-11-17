@@ -1,42 +1,61 @@
-print("Ejercicio 12: Alta de productos con folio")
+print("Ejercicio 12: Precios del Buen Fin")
 print("Nombre: Angela Delgado")
 print("Matrícula: T03093906")
 print()
 
-# ¿Cuántos productos vamos a dar de alta?
-cuantos = int(input("¿Cuántos productos vas a dar de alta? "))
+# Catálogo: cada producto tiene su precio en la MISMA posición
+productos = ["Café", "Tequila", "Miel", "Mezcal", "Cacao"]
+precios = [450, 1200, 300, 980, 150]
 
-# Aquí sumaremos el valor de todo el inventario
-valor_total = 0
+# Pedimos los datos
+descuento = float(input("Porcentaje de descuento del Buen Fin: "))
+consulta = input("¿Qué producto quiere consultar el cliente?: ")
 
-# "Para cada" número del 1 al total de productos...
-for numero in range(1, cuantos + 1):
-    # Creamos el folio: str() convierte el número en texto para poder juntarlo
-    folio = "SNK" + str(numero)
+# 1. Haz una COPIA REAL de precios para no cambiar los precios originales
+promocion = list(precios)
 
-    print()
-    print("📝 Producto con folio", folio)
-    nombre = input("Nombre: ")
+# Aplicamos el descuento a cada precio de la copia
+for i in range(len(promocion)):
+    promocion[i] = promocion[i] - promocion[i] * descuento / 100
 
-    # Pedimos el precio y lo validamos: mientras sea 0 o menos, se repite
-    precio = int(input("Precio: $"))
-    while precio <= 0:
-        print("❌ El precio debe ser mayor que 0")
-        precio = int(input("Precio: $"))
+# 2. Solo los 3 PRIMEROS productos entran a la promoción. Toma ese pedazo con una rebanada
+productos_promo = productos[:3]
 
-    piezas = int(input("Piezas en bodega: "))
+# 3. Borra de promocion los precios desde la posición 3 hasta el final (usa del)
+del promocion[3:]
 
-    # Calculamos cuánto vale este producto en bodega
-    valor = precio * piezas
-    valor_total = valor_total + valor
-
-    # Mostramos la ficha
-    print("✅ Alta exitosa")
-    print("  Folio:", folio, "· Nombre:", nombre)
-    print("  Precio: $", precio, "· Piezas:", piezas, "· Valor: $", valor)
-
-# Ya terminamos todas las altas
 print()
-print("===== RESUMEN DEL INVENTARIO =====")
-print("Productos dados de alta:", cuantos)
-print("💰 Valor total del inventario: $", valor_total)
+print("===== PRECIOS DEL BUEN FIN =====")
+print("Productos en promoción:", productos_promo)
+print("Precios originales:", precios)
+print("Precios con descuento:", promocion)
+
+# 4. Busca el producto más caro de la promoción
+mayor = promocion[0]
+pos_mayor = 0
+for i in range(len(promocion)):
+    if promocion[i] > mayor:
+        mayor = promocion[i]
+        pos_mayor = i
+print("⭐ El producto en promoción más caro es ", productos_promo[pos_mayor], " a $", mayor, sep="")
+
+print()
+print("===== CONSULTA DEL CLIENTE =====")
+
+# 5. Si el producto NO está en el catálogo, avisa al cliente
+if consulta not in productos:
+    print("❌", consulta, "no está en nuestro catálogo.")
+else:
+    # Buscamos la posición del producto en el catálogo
+    pos = -1
+    for i in range(len(productos)):
+        if productos[i] == consulta:
+            pos = i
+            
+    print("Precio normal de ", consulta, ": $", precios[pos], sep="")
+
+    # 6. Revisa si el producto está en la lista de productos en promoción
+    if consulta in productos_promo:
+        print("🎉 Precio Buen Fin: $", promocion[pos], sep="")
+    else:
+        print("📄", consulta, "no entra a la promoción. Se cobra el precio normal.")
